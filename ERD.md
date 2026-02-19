@@ -5,7 +5,7 @@
 ---
     erDiagram
 
-    BOOK {
+    buku {
         string id PK
         string title
         string author
@@ -17,31 +17,36 @@
         datetime updated_at
     }
 
-    BOOK_CATEGORY {
+    kategori {
         string id PK
         string category_name
         datetime created_at
         datetime updated_at
     }
 
-    BOOK_SHELF {
+    rak_buku {
         string id PK
-        string category_name
+        string shelf_name
         datetime created_at
         datetime updated_at
     }
 
-    STAFF{
+    petugas{
         string id PK
         string name
         datetime created_at
         datetime updated_at
     }
     
-    MEMBER{
+    peminjam{
         string id PK
         string name
         datetime created_at
         datetime updated_at
     }
+
+    buku ||--|| kategori : has
+    rak_buku only one to zero or many buku : has
+    buku only one to only one peminjam : borrow
+    buku only one to only one petugas : lend
 ```
