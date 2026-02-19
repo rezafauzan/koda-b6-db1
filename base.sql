@@ -51,10 +51,10 @@ CREATE TABLE peminjam(
         updated_at TIMESTAMP DEFAULT NOW()
 );
 
-ALTER TABLE "buku" ADD CONSTRAINT fk_kategori FOREIGN KEY (category_id) REFERENCES kategori(id)
-ALTER TABLE "buku" ADD CONSTRAINT fk_peminjam FOREIGN KEY (borrower_id) REFERENCES peminjam(id)
-ALTER TABLE "buku" ADD CONSTRAINT fk_petugas FOREIGN KEY (lender_id) REFERENCES petugas(id)
-ALTER TABLE "buku" ADD CONSTRAINT fk_rak_buku FOREIGN KEY (bookshelf_id) REFERENCES rak_buku(id)
+ALTER TABLE "buku" ADD CONSTRAINT fk_kategori FOREIGN KEY (category_id) REFERENCES kategori(id);
+ALTER TABLE "buku" ADD CONSTRAINT fk_peminjam FOREIGN KEY (borrower_id) REFERENCES peminjam(id);
+ALTER TABLE "buku" ADD CONSTRAINT fk_petugas FOREIGN KEY (lender_id) REFERENCES petugas(id);
+ALTER TABLE "buku" ADD CONSTRAINT fk_rak_buku FOREIGN KEY (bookshelf_id) REFERENCES rak_buku(id);
 
 INSERT INTO kategori (category_name) VALUES ('Novel'), ('Komik'), ('Teknologi'), ('Sejarah'), ('Biografi'), ('Sains'), ('Pendidikan'), ('Agama'), ('Bisnis'), ('Fiksi');
 INSERT INTO rak_buku (shelf_name) VALUES ('Rak A'), ('Rak B'), ('Rak D'), ('Rak E'), ('Rak F'), ('Rak G'), ('Rak H'), ('Rak I'), ('Rak J'), ('Rak L');
@@ -73,3 +73,5 @@ VALUES
 ('Komik Naruto', 'Masashi Kishimoto', 'Elex Media', 200, 2, 8, 8, 8, NOW(), NOW()),
 ('Novel Senja', 'Tere Liye', 'Republika', 380, 1, 9, 9, 9, NOW(), NOW()),
 ('Agama Islam', 'Buya Hamka', 'Gema Insani', 410, 8, 10, 10, 10, NOW(), NOW());
+
+SELECT title, author, publisher, total_pages,category_id, borrower_id, lender_id, bookshelf_id,borrowed_at, back_at FROM buku

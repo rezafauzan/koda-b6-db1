@@ -1,4 +1,15 @@
 # Entity Relationship Diagram : Library ERD
+Creating ERD and implement it to postgreSQL database
+
+## Result Screenshoot
+![Table Relation](assets/img/screenshoot.png)
+
+## Data Screenshoot
+![Data](assets/img/screenshoot_data.png)
+
+## How to run it 
+- Download base.sql run it with postgresql query terminal
+
 ```mermaid
 ---
 title: Library ERD
