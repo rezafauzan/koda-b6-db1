@@ -6,14 +6,15 @@ title: Library ERD
 erDiagram
 
     buku {
-        string id PK
+        INT id PK
         string title
         string author
         string publisher
         int total_pages
-        string category_id FK
-        string borrower_id FK
-        string lender_id FK
+        int category_id FK
+        int borrower_id FK
+        int lender_id FK
+        int bookshelf_id FK
         datetime borrowed_at
         datetime back_at
         datetime created_at
@@ -21,30 +22,30 @@ erDiagram
     }
 
     kategori {
-        string id PK
+        INT id PK
         string category_name
         datetime created_at
         datetime updated_at
     }
 
     rak_buku {
-        string id PK
+        INT id PK
         string shelf_name
         datetime created_at
         datetime updated_at
     }
 
     petugas{
-        string id PK
+        INT id PK
         string name
         datetime created_at
         datetime updated_at
     }
     
     peminjam{
-        string id PK
+        INT id PK
         string name
-        string book_id FK
+        int book_id FK
         datetime created_at
         datetime updated_at
     }
