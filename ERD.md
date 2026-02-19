@@ -1,18 +1,21 @@
 # Entity Relationship Diagram : Library ERD
 ```mermaid
 ---
-    title: Library ERD
+title: Library ERD
 ---
-    erDiagram
+erDiagram
 
     buku {
         string id PK
         string title
         string author
         string publisher
-        int pages
+        int total_pages
         string category_id FK
         string borrower_id FK
+        string lender_id FK
+        datetime borrowed_at
+        datetime back_at
         datetime created_at
         datetime updated_at
     }
@@ -41,6 +44,7 @@
     peminjam{
         string id PK
         string name
+        string book_id FK
         datetime created_at
         datetime updated_at
     }
