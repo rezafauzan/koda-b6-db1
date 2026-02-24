@@ -1,19 +1,34 @@
 DROP DATABASE IF EXISTS library;
 CREATE DATABASE library;
 
+DROP TABLE IF EXISTS author;
+CREATE TABLE author (
+        id SERIAL PRIMARY KEY,
+        author_name VARCHAR(255),
+        created_at TIMESTAMP DEFAULT NOW(),
+        updated_at TIMESTAMP DEFAULT NOW()
+);
+
+DROP TABLE IF EXISTS publisher;
+CREATE TABLE publisher (
+        id SERIAL PRIMARY KEY,
+        publisher_name VARCHAR(255),
+        created_at TIMESTAMP DEFAULT NOW(),
+        updated_at TIMESTAMP DEFAULT NOW()
+);
+
 DROP TABLE IF EXISTS buku;
 CREATE TABLE buku (
         id SERIAL PRIMARY KEY,
         title VARCHAR(255),
-        author VARCHAR(255),
-        publisher VARCHAR(255),
+        author_id INT FOREIGN KEY REFERENCES author(id),
+        publisher_id INT FOREIGN KEY REFERENCES publisher(id),
         total_pages INT,
         category_id INT,
         bookshelf_id INT,
         created_at TIMESTAMP DEFAULT NOW(),
         updated_at TIMESTAMP DEFAULT NOW()
 );
-
 
 DROP TABLE IF EXISTS kategori;
 CREATE TABLE kategori (
@@ -65,6 +80,8 @@ ALTER TABLE "buku" ADD CONSTRAINT fk_peminjam FOREIGN KEY (borrower_id) REFERENC
 ALTER TABLE "buku" ADD CONSTRAINT fk_petugas FOREIGN KEY (lender_id) REFERENCES petugas(id);
 ALTER TABLE "buku" ADD CONSTRAINT fk_rak_buku FOREIGN KEY (bookshelf_id) REFERENCES rak_buku(id);
 
+INSERT INTO author (author_name) VALUES ('Andrea Hirata'), ('Tere Liye'), ('Dee Lestari'), ('Pramoedya Ananta Toer'), ('Habiburrahman El Shirazy'), ('Eka Kurniawan'), ('Pidi Baiq'), ('Okky Madasari'), ('Ayu Utami'), ('Raditya Dika');
+INSERT INTO publisher (publisher_name) VALUES ('Gramedia Pustaka Utama'), ('Mizan'), ('Elex Media Komputindo'), ('Bentang Pustaka'), ('GagasMedia'), ('Republika Penerbit'), ('Andi Publisher'), ('Bukune'), ('Penerbit Erlangga'), ('Noura Books');
 INSERT INTO kategori (category_name) VALUES ('Novel'), ('Komik'), ('Teknologi'), ('Sejarah'), ('Biografi'), ('Sains'), ('Pendidikan'), ('Agama'), ('Bisnis'), ('Fiksi');
 INSERT INTO rak_buku (shelf_name) VALUES ('Rak A'), ('Rak B'), ('Rak D'), ('Rak E'), ('Rak F'), ('Rak G'), ('Rak H'), ('Rak I'), ('Rak J'), ('Rak L');
 INSERT INTO petugas (name) VALUES ('Andi'), ('Budi'), ('Citra'), ('Dewi'), ('Eka'), ('Fajar'), ('Gita'), ('Hendra'), ('Indah'), ('Joko');
