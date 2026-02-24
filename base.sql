@@ -1,7 +1,14 @@
-DROP DATABASE IF EXISTS library;
-CREATE DATABASE library;
-
+-- DROP DATABASE IF EXISTS library;
+-- CREATE DATABASE library;
+DROP TABLE IF EXISTS pinjaman;
+DROP TABLE IF EXISTS buku;
 DROP TABLE IF EXISTS author;
+DROP TABLE IF EXISTS publisher;
+DROP TABLE IF EXISTS kategori;
+DROP TABLE IF EXISTS rak_buku;
+DROP TABLE IF EXISTS petugas;
+DROP TABLE IF EXISTS peminjam;
+
 CREATE TABLE author (
         id SERIAL PRIMARY KEY,
         author_name VARCHAR(255),
@@ -9,7 +16,6 @@ CREATE TABLE author (
         updated_at TIMESTAMP DEFAULT NOW()
 );
 
-DROP TABLE IF EXISTS publisher;
 CREATE TABLE publisher (
         id SERIAL PRIMARY KEY,
         publisher_name VARCHAR(255),
@@ -17,12 +23,11 @@ CREATE TABLE publisher (
         updated_at TIMESTAMP DEFAULT NOW()
 );
 
-DROP TABLE IF EXISTS buku;
 CREATE TABLE buku (
         id SERIAL PRIMARY KEY,
         title VARCHAR(255),
-        author_id INT FOREIGN KEY REFERENCES author(id),
-        publisher_id INT FOREIGN KEY REFERENCES publisher(id),
+        author_id INT REFERENCES author(id),
+        publisher_id INT REFERENCES publisher(id),
         total_pages INT,
         category_id INT,
         bookshelf_id INT,
@@ -30,7 +35,6 @@ CREATE TABLE buku (
         updated_at TIMESTAMP DEFAULT NOW()
 );
 
-DROP TABLE IF EXISTS kategori;
 CREATE TABLE kategori (
         id SERIAL PRIMARY KEY,
         category_name VARCHAR(255),
@@ -38,7 +42,6 @@ CREATE TABLE kategori (
         updated_at TIMESTAMP DEFAULT NOW()
 );
 
-DROP TABLE IF EXISTS rak_buku;
 CREATE TABLE rak_buku (
         id SERIAL PRIMARY KEY,
         shelf_name VARCHAR(255),
@@ -46,7 +49,6 @@ CREATE TABLE rak_buku (
         updated_at TIMESTAMP DEFAULT NOW()
 );
 
-DROP TABLE IF EXISTS petugas;
 CREATE TABLE petugas(
         id SERIAL PRIMARY KEY,
         name VARCHAR(255),
@@ -54,7 +56,6 @@ CREATE TABLE petugas(
         updated_at TIMESTAMP DEFAULT NOW()
 );
 
-DROP TABLE IF EXISTS peminjam;
 CREATE TABLE peminjam(
         id SERIAL PRIMARY KEY,
         name VARCHAR(255),
@@ -63,12 +64,11 @@ CREATE TABLE peminjam(
         updated_at TIMESTAMP DEFAULT NOW()
 );
 
-DROP TABLE IF EXISTS pinjaman;
 CREATE TABLE pinjaman (
         id SERIAL PRIMARY KEY,
-        book_id FOREIGN KEY REFERENCES buku(id),
-        borrower_id FOREIGN KEY REFERENCES peminjam(id),
-        lender_id FOREIGN KEY REFERENCES petugas(id),
+        book_id INT REFERENCES buku(id),
+        borrower_id INT REFERENCES peminjam(id),
+        lender_id INT REFERENCES petugas(id),
         borrowed_at TIMESTAMP,
         back_at TIMESTAMP,
         created_at TIMESTAMP DEFAULT NOW(),
@@ -76,8 +76,6 @@ CREATE TABLE pinjaman (
 );
 
 ALTER TABLE "buku" ADD CONSTRAINT fk_kategori FOREIGN KEY (category_id) REFERENCES kategori(id);
-ALTER TABLE "buku" ADD CONSTRAINT fk_peminjam FOREIGN KEY (borrower_id) REFERENCES peminjam(id);
-ALTER TABLE "buku" ADD CONSTRAINT fk_petugas FOREIGN KEY (lender_id) REFERENCES petugas(id);
 ALTER TABLE "buku" ADD CONSTRAINT fk_rak_buku FOREIGN KEY (bookshelf_id) REFERENCES rak_buku(id);
 
 INSERT INTO author (author_name) VALUES ('Andrea Hirata'), ('Tere Liye'), ('Dee Lestari'), ('Pramoedya Ananta Toer'), ('Habiburrahman El Shirazy'), ('Eka Kurniawan'), ('Pidi Baiq'), ('Okky Madasari'), ('Ayu Utami'), ('Raditya Dika');
