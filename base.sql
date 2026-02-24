@@ -89,15 +89,15 @@ INSERT INTO peminjam (name, book_id) VALUES ('John', 1), ('Jihn', 2), ('Kerang',
 
 INSERT INTO buku (title, author, publisher, total_pages,category_id, borrower_id, lender_id, bookshelf_id,borrowed_at, back_at) 
 VALUES
-('Belajar Golang', 'Reza Fauzan', 'Informatika', 320, 3, 1, 1, 1, NOW(), NOW()),
-('Dasar PostgreSQL', 'Andi Wijaya', 'Gramedia', 280, 3, 2, 2, 2, NOW(), NOW()),
-('Sejarah Dunia', 'Budi Santoso', 'Erlangga', 450, 4, 3, 3, 3, NOW(), NOW()),
-('Biografi Tesla', 'Nikola Bio', 'Bentang', 300, 5, 4, 4, 4, NOW(), NOW()),
-('Fisika Dasar', 'Isaac Newton', 'Andi', 500, 6, 5, 5, 5, NOW(), NOW()),
-('Matematika SMA', 'Pak Dengklek', 'Erlangga', 420, 7, 6, 6, 6, NOW(), NOW()),
-('Bisnis Startup', 'Nadiem Makarim', 'Kompas', 350, 9, 7, 7, 7, NOW(), NOW()),
-('Komik Naruto', 'Masashi Kishimoto', 'Elex Media', 200, 2, 8, 8, 8, NOW(), NOW()),
-('Novel Senja', 'Tere Liye', 'Republika', 380, 1, 9, 9, 9, NOW(), NOW()),
-('Agama Islam', 'Buya Hamka', 'Gema Insani', 410, 8, 10, 10, 10, NOW(), NOW());
+('Belajar Golang', 1, 10, 320, 3, 1, 1, 1, NOW(), NOW()),
+('Dasar PostgreSQL', 2, 9, 280, 3, 2, 2, 2, NOW(), NOW()),
+('Sejarah Dunia', 3, 8, 450, 4, 3, 3, 3, NOW(), NOW()),
+('Biografi Tesla', 4, 7, 300, 5, 4, 4, 4, NOW(), NOW()),
+('Fisika Dasar', 5, 6, 500, 6, 5, 5, 5, NOW(), NOW()),
+('Matematika SMA', 6, 5, 420, 7, 6, 6, 6, NOW(), NOW()),
+('Bisnis Startup', 7, 4, 350, 9, 7, 7, 7, NOW(), NOW()),
+('Komik Naruto', 8, 3, 200, 2, 8, 8, 8, NOW(), NOW()),
+('Novel Senja', 9, 2, 380, 1, 9, 9, 9, NOW(), NOW()),
+('Agama Islam', 10, 1, 410, 8, 10, 10, 10, NOW(), NOW());
 
 SELECT title, author, publisher, total_pages,category_id, borrower_id, lender_id, bookshelf_id,borrowed_at, back_at FROM buku
