@@ -32,6 +32,21 @@ erDiagram
         datetime updated_at
     }
 
+    author{
+        int id PK
+        string author_name
+        datetime created_at
+        datetime updated_at
+    }
+
+    publisher{
+        int id PK
+        string publisher_name
+        datetime created_at
+        datetime updated_at
+    }
+
+
     kategori {
         INT id PK
         string category_name
@@ -61,8 +76,20 @@ erDiagram
         datetime updated_at
     }
 
+    pinjaman{
+        int id PK
+        int book_id FK
+        int borrower_id FK
+        int lender_id FK
+        datetime borrowed_at
+        datetime back_at
+        datetime created_at
+        datetime updated_at
+    }
+
     buku ||--|| kategori : has
     rak_buku only one to zero or many buku : has
-    buku only one to only one peminjam : borrow
-    buku only one to only one petugas : lend
+    pinjaman only one to only one buku : has
+    pinjaman only one to only one peminjam : has
+    pinjaman only one to only one petugas : has
 ```
