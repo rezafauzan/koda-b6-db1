@@ -9,14 +9,11 @@ CREATE TABLE buku (
         publisher VARCHAR(255),
         total_pages INT,
         category_id INT,
-        borrower_id INT,
-        lender_id INT,
         bookshelf_id INT,
-        borrowed_at TIMESTAMP,
-        back_at TIMESTAMP,
         created_at TIMESTAMP DEFAULT NOW(),
         updated_at TIMESTAMP DEFAULT NOW()
 );
+
 
 DROP TABLE IF EXISTS kategori;
 CREATE TABLE kategori (
@@ -47,6 +44,18 @@ CREATE TABLE peminjam(
         id SERIAL PRIMARY KEY,
         name VARCHAR(255),
         book_id INT,
+        created_at TIMESTAMP DEFAULT NOW(),
+        updated_at TIMESTAMP DEFAULT NOW()
+);
+
+DROP TABLE IF EXISTS pinjaman;
+CREATE TABLE pinjaman (
+        id SERIAL PRIMARY KEY,
+        book_id FOREIGN KEY REFERENCES buku(id),
+        borrower_id FOREIGN KEY REFERENCES peminjam(id),
+        lender_id FOREIGN KEY REFERENCES petugas(id),
+        borrowed_at TIMESTAMP,
+        back_at TIMESTAMP,
         created_at TIMESTAMP DEFAULT NOW(),
         updated_at TIMESTAMP DEFAULT NOW()
 );
