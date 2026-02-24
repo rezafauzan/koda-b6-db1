@@ -88,6 +88,8 @@ erDiagram
     }
 
     buku ||--|| kategori : has
+    buku one or more to only one author : has
+    buku one or more to only one publisher : has
     rak_buku only one to zero or many buku : has
     pinjaman only one to only one buku : has
     pinjaman only one to only one peminjam : has
